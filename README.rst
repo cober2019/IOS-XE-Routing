@@ -1,2 +1,2 @@
-IOS-XE-Routing TablE
+IOS-XE-Routing Table
 ====================
