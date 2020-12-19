@@ -1,0 +1,69 @@
+<table class="table align-items-center table-flush results" >
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="text-center">VRF</th>
+      <th scope="col" class="text-center">Prefix</th>
+      <th scope="col" class="text-center">Protocol</th>
+      <th scope="col" class="text-center">AD</th>
+      <th scope="col" class="text-center">Metric</th>
+      <th scope="col" class="text-center">Next-Hop</th>
+      <th scope="col" class="text-center">Interface</th>
+      <th scope="col" class="text-center">Tag</th>
+      <th scope="col" class="text-center">Age</th>
+      <th scope="col" class="text-center">Get Details</th>
+    </tr>
+  </thead>
+  <tbody id="myTable">
+  {% for i in route_table %}
+    <tr style="height:1px">
+      <th scope="row" class="text-center">
+        {{ i[0] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[1] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[2] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[3] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[4] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[5] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[6] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[7] }}
+      </th>
+      <th scope="row" class="text-center">
+        {{ i[8] }}
+      </th>
+      <th scope="row" class="text-center">
+        <input value="Route Details" name=" {{ i[1] }}-{{ i[2] }}" class="btn btn-link" role="status" type="button" onclick="getRouting(this.name)" id="{{ k }}">
+      </th>
+    </tr>
+  {%endfor%}
+</table>
+
+<script>
+
+  function getRouting(val){
+  document.getElementById('getRoutes').value  = 'Getting Details...';
+     $.ajax({
+      url: '/route_details',
+      type: 'POST',
+      data: {'details': val},
+      success: function(response) {
+          var wind_two = window.open("", "popupWindow", "width=700,height=800,scrollbars=yes");
+            wind_two.document.write(response);
+            document.getElementById('getRoutes').value  = 'Refresh Routes';
+      },
+     });
+    }
+
+ </script>

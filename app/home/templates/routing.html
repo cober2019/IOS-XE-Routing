@@ -1,0 +1,122 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} IOS-XE Viewer {% endblock title %}
+
+{% block stylesheets %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col ">
+            <h3 class="mb-0">Routing Table</h3>
+          </div>
+        </div>
+      </div>
+        <div class="table-responsive">
+          <div class="search-box">
+           <input class="form-control" id="myInput" type="text" placeholder="Search..">
+          </div>
+          <span class="counter pull-right"></span>
+          <table class="table align-items-center table-flush results" >
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="text-center">VRF</th>
+                <th scope="col" class="text-center">Prefix</th>
+                <th scope="col" class="text-center">Protocol</th>
+                <th scope="col" class="text-center">AD</th>
+                <th scope="col" class="text-center">Metric</th>
+                <th scope="col" class="text-center">Next-Hop</th>
+                <th scope="col" class="text-center">Interface</th>
+                <th scope="col" class="text-center">Tag</th>
+                <th scope="col" class="text-center">Age</th>
+                <th scope="col" class="text-center">Get Details</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for i in route_table %}
+              <tr style="height:1px">
+                <th scope="row" class="text-center">
+                  {{ i[0] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[1] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[2] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[3] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[4] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[5] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[6] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[7] }}
+                </th>
+                <th scope="row" class="text-center">
+                  {{ i[8] }}
+                </th>
+                <th scope="row" class="text-center">
+                  <input value="Route Details" name="{{ i[1] }}-{{ i[2] }}" class="btn btn-link" role="status" type="button" onclick="getRouting(this.name)" id="{{ i[1] }}-{{ i[2] }}">
+                </th>
+              </tr>
+            {%endfor%}
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+</script>
+
+<script>
+
+  function getRouting(val){
+    document.getElementById(val).value  = 'Getting Details...';
+     $.ajax({
+      url: '/route_details',
+      type: 'POST',
+      data: {'details': val},
+      success: function(response) {
+          var wind = window.open("", "popupWindow", "width=700,height=800,scrollbars=yes");
+            wind.document.write(response);
+            document.getElementById(val).value  = 'Route Details';
+      },
+     });
+    }
+
+ </script>
+
+ {% endblock content %}
+
+{% block javascripts %}
+
+
+{% endblock javascripts %}
