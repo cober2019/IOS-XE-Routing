@@ -1,4 +1,4 @@
-.. image:: https://travis-ci.com/cober2019/IOS-XE-Routing.svg?branch=master
+.. image:: https://travis-ci.com/cober2019/IOS-XE-Routing.svg?branch=main
     :target: https://travis-ci.com/cober2019/IOS-XE-Routing
 .. image:: https://img.shields.io/badge/IOS--XE-required-blue
     :target: -
