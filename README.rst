@@ -15,8 +15,12 @@ Usage:
 Routing Table
 --------------
 
+.. image:: https://github.com/cober2019/IOS-XE-Routing/blob/main/images/RoutingTable.PNG
+
 Route Details
 --------------
+
+.. image:: https://github.com/cober2019/IOS-XE-Routing/blob/main/images/routeDetials.PNG
 
     
     
