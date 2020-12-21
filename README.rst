@@ -8,6 +8,9 @@
     :target: -
 .. image:: https://img.shields.io/badge/DevnetSandbox-passing-green
     :target: -
+.. image:: https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg
+    :target: https://developer.cisco.com/codeexchange/github/repo/cober2019/IOS-XE-Routing
+    
 IOS-XE-Routing
 ================
 
