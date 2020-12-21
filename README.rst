@@ -2,14 +2,22 @@
     :target: https://travis-ci.com/cober2019/IOS-XE-Routing
 .. image:: https://img.shields.io/badge/IOS--XE-required-blue
     :target: -
+.. image:: https://img.shields.io/badge/Fugi_IOS_XE_v16.09.04-passing-green
+    :target: -
+.. image:: https://img.shields.io/badge/Fugi_IOS_XE_v16.07.02-passing-green
+    :target: -
 .. image:: https://img.shields.io/badge/DevnetSandbox-passing-green
     :target: -
-
 IOS-XE-Routing
 ================
 
   This program gets the routing table for devices running IOS-XE software. On top of getting the routes it also allows you to get the route details from CLI     with one click. ***This program uses a popup window so ensure your browser isn't blocking them.**
-  
+
+App Access
+-----------
+
+    + Use http://127.0.0.1:5000/ to access the app login page
+    
 Routing Table
 --------------
 
